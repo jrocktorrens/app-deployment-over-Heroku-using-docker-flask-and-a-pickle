@@ -30,7 +30,7 @@ def rest_api():
         sampled_xtest = pd.DataFrame(X_test.iloc[idx, :])
         curr_line_para = {col: [sampled_xtest.loc[col]] for col in COLUMNS}  # parameters for request
         single_response = requests.get('http://127.0.0.1:5000/predict_churn', params=curr_line_para)
-        single_inference_pred = int(single_response.text.rsplit('</h1>')[1])
+        single_inference_pred = int(single_response.text.rsplit('</h1>')[0][1])
         inference_output_list.append(single_inference_pred)
     return inference_output_list
 
